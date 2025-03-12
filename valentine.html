@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine's Card cho Diễm Quỳnh xinh gái</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('./z5484149752360_e0df79d651fe8d0c148d6066d9a7e919.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 400px;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heart {
+      width: 100px;
+      height: 100px;
+      background-color: #ff4d4d;
+      position: relative;
+      margin: 0 auto 20px;
+      transform: rotate(-45deg);
+      animation: beat 1s infinite;
+      cursor: pointer;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 100px;
+      background-color: #ff4d4d;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+      100% { transform: scale(1) rotate(-45deg); }
+    }
+
+    h1 {
+      color: #ff4d4d;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    p {
+      color: #333;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .letter {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(255, 245, 245, 0.4);
+      border: 2px dashed #ff4d4d;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #555;
+      text-align: left;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    .letter.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .floating-heart {
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d4d;
+      position: absolute;
+      top: 100vh;
+      transform: rotate(-45deg);
+      animation: float linear forwards;
+      z-index: 0;
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d4d;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .floating-heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .floating-heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: rotate(-45deg) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(-45deg) translateY(-100vh) translateX(var(--drift));
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="heart" id="heart-trigger"></div>
+    <h1>Happy Valentine's Day, Diễm Quỳnh xinh gái!</h1>
+    <p>You mean the world to me!</p>
+    <div class="letter" id="love-letter">
+      <p>My Dearest QuỳnhQuỳnh,</p>
+      <p>Thời gian vừa qua anh làm em tổn thương nhiều rồi, anh cũng không hiểu anh bị sao nữa nhưng mà mong Diễm Quỳnh bỏ qua cho anh tiếp tục cố gắng để mình mãi yêu nhau!</p>
+      <p>Yêu em <br>Vinhdeptraiso1thegioi</p>
+    </div>
+  </div>
+
+  <script>
+    let intervalId;
+
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px');
+      const duration = Math.random() * 2000 + 3000; // 3 đến 5 giây
+      heart.style.animationDuration = (duration / 1000) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, duration);
+    }
+
+    document.getElementById('heart-trigger').addEventListener('click', function() {
+      const letter = document.getElementById('love-letter');
+      letter.classList.toggle('show');
+      if (letter.classList.contains('show')) {
+        intervalId = setInterval(createFloatingHeart, 500);
+      } else {
+        clearInterval(intervalId);
+      }
+    });
+  </script>
+</body>
+</html>
